@@ -37,6 +37,7 @@ module.exports = function(grunt) {
       custom_options: {
         options: {
           url: 'http://timkadlec.com',
+          key: '***REMOVED***',
           budget: {
             SpeedIndex: '1500'
           }

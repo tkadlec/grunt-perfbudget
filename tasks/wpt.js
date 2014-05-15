@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       url: "http://timkadlec.com",
-      key: "***REMOVED***",
+      key: "",
       location: "Dulles_Nexus5",
       budget: {
         visualComplete: '4000',
@@ -98,13 +98,19 @@ module.exports = function(grunt) {
         wpt = new WebPageTest('www.webpagetest.org', options.key),
         err, data;
 
-        grunt.log.writeln( ('Running test...').cyan );
+
         wpt.runTest(options.url, {location: options.location, video: 1}, function(err, data) {
-          if (data.statusCode === 200) {
+          if (err) {
+            grunt.log.error(err);
+          } else if (data.statusCode === 200) {
+            grunt.log.writeln( ('Running test...').cyan );
+
             testId = data.data.testId;
             grunt.log.writeln( ('Test ID ' + testId + ' obtained....').cyan );
             
             retrieveResults(testId);
+          } else {
+            grunt.log.error(data.statusText);
           }
         });
   });
