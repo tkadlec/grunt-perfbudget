@@ -30,11 +30,7 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     wpt: {
-      default_options: {
-        options: {
-        }
-      },
-      custom_options: {
+      foo: {
         options: {
           url: 'http://timkadlec.com',
           key: '***REMOVED***',

@@ -16,8 +16,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('wpt', 'Grunt task for WebPageTest', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      url: "http://timkadlec.com",
-      key: "",
+      url: '',
+      key: '',
       location: "Dulles_Nexus5",
       budget: {
         visualComplete: '4000',
