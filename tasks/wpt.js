@@ -20,6 +20,11 @@ module.exports = function(grunt) {
       key: '',
       location: "Dulles_Nexus5",
       wptInstance: "www.webpagetest.org",
+      connectivity: '',
+      bandwidthDown: '',
+      bandwidthUp: '',
+      latency: '',
+      packetLossRate: '',
       budget: {
         visualComplete: '4000',
         render: '1000',
