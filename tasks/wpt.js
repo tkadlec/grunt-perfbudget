@@ -19,26 +19,59 @@ module.exports = function(grunt) {
       url: "http://timkadlec.com",
       key: "***REMOVED***",
       location: "Dulles_Nexus5",
-      thresholds: {
-        visualComplete: '1000'
+      budget: {
+        visualComplete: '4000',
+        render: '1000',
+        loadTime: '',
+        docTime: '',
+        fullyLoaded: '',
+        bytesOut: '',
+        bytesOutDoc: '',
+        bytesIn: '',
+        bytesInDoc: '',
+        requests: '', 
+        requestsDoc: '',
+        domTime: '',
+        SpeedIndex: '1000'
       }
     });
+
     var testId,
         curStatus,
         myTimer;
 
     var processData = function(data) {
-      if (data.data.median.firstView.visualComplete > options.thresholds.visualComplete) {
+      var budget = options.budget,
+          median = data.data.median.firstView,
+          pass = true,
+          str = "";
+
+      for (var item in budget) {
+        // make sure this is objects own property and not inherited
+        if (budget.hasOwnProperty(item)) {
+          if (budget[item] !== '' && median.hasOwnProperty(item)) {
+            if (median[item] > budget[item]) {
+              pass = false;
+              str += item + ': ' + median[item] + ' [FAIL]. Budget is ' + budget[item] + '\n';
+            } else {
+              str += item + ': ' + median[item] + ' [PASS]. Budget is ' + budget[item] + '\n';
+            }
+          }
+        }
+      }
+
+      if (!pass) {
         grunt.log.error('\n\n-----------------------------------------------' +
               '\nTest for ' + options.url + ' \t  FAILED' +
             '\n-----------------------------------------------\n\n');
-        grunt.log.error('Render time: ' + data.data.median.firstView.visualComplete + ', threshold is ' + options.thresholds.visualComplete);
+        grunt.log.error(str);
       } else {
         grunt.log.ok('\n\n-----------------------------------------------' +
               '\nTest for ' + options.url + ' \t  PASSED' +
             '\n-----------------------------------------------\n\n');
-        grunt.log.ok('Render time: ' + data.data.median.firstView.visualComplete + ', threshold is ' + options.thresholds.visualComplete);
+        grunt.log.ok(str);
       }
+      
     };
 
     var retrieveResults = function() {

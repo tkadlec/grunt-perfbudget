@@ -32,18 +32,14 @@ module.exports = function(grunt) {
     wpt: {
       default_options: {
         options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
         }
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
+          url: 'http://timkadlec.com',
+          budget: {
+            SpeedIndex: '1500'
+          }
         }
       }
     },
