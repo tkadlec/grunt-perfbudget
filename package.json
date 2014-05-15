@@ -36,6 +36,9 @@
   "peerDependencies": {
     "grunt": "~0.4.5"
   },
+  "dependencies": {
+    "webpagetest": "~0.2.4"
+  },
   "keywords": [
     "gruntplugin"
   ]
