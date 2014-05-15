@@ -19,6 +19,7 @@ module.exports = function(grunt) {
       url: '',
       key: '',
       location: "Dulles_Nexus5",
+      wptInstance: "www.webpagetest.org",
       budget: {
         visualComplete: '4000',
         render: '1000',
@@ -95,7 +96,7 @@ module.exports = function(grunt) {
     var done = this.async(),
         WebPageTest = require('webpagetest'),
         spawn = require('child_process').spawn,
-        wpt = new WebPageTest('www.webpagetest.org', options.key),
+        wpt = new WebPageTest(options.wptInstance, options.key),
         err, data;
 
 
