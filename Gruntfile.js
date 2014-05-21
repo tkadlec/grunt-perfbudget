@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     perfbudget: {
       foo: {
         options: {
-          url: 'http://timkadlec.com',
+          url: 'http://google.com',
           key: '***REMOVED***',
           budget: {
             SpeedIndex: '1500'
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'wpt', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'perfbudget', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
