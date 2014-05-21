@@ -25,18 +25,28 @@ grunt.loadNpmTasks('grunt-perfbudget');
 
 ## The "wpt" task
 
-### Overview
-In your project's Gruntfile, add a section named `perfbudget` to the data object passed into `grunt.initConfig()`.
+### Required configuration properties
 
-```js
-grunt.initConfig({
-  perfbudget: {
-    options: {
-      // Task-specific options go here.
-    }
-  },
-});
+While grunt-perfbudget provides defaults for most configurable options, it does require the URL to be tested, as well as an API key to use (if testing against the public instance of WebPageTest).
+
+These can be set in your Gruntfile.js config file like so:
+
 ```
+perfbudget: {
+  foo: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE'
+    }
+  }
+}
+```
+
+With these configuration properties set, you can add `perfbudget` to your default tasks list. That'll look something like this:
+
+    grunt.registerTask('default', ['jshint', 'perfbudget']);
+
+With this in place, grunt-perfbudget will now test your site against the default performance budget settings to see if you're passing.
 
 ### Options
 

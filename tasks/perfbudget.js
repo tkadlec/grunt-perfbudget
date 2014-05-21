@@ -1,6 +1,6 @@
 /*
- * grunt-wpt
- * https://github.com/tim/grunt-wpt
+ * grunt-perfbudget
+ * https://github.com/tim/grunt-perfbudget
  *
  * Copyright (c) 2014 Tim Kadlec
  * Licensed under the MIT license.
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       latency: '',
       packetLossRate: '',
       budget: {
-        visualComplete: '4000',
+        visualComplete: '',
         render: '1000',
         loadTime: '',
         docTime: '',
