@@ -31,9 +31,9 @@ While grunt-perfbudget provides defaults for most configurable options, it does 
 
 These can be set in your Gruntfile.js config file like so:
 
-```
+```javascript
 perfbudget: {
-  foo: {
+  default: {
     options: {
       url: 'http://google.com',
       key: 'API_KEY_HERE'
@@ -48,15 +48,198 @@ With these configuration properties set, you can add `perfbudget` to your defaul
 
 With this in place, grunt-perfbudget will now test your site against the default performance budget settings to see if you're passing.
 
+
 ### Options
+
+grunt-performancebudget takes the following options:
+
+#### options.url
+
+Type `String`
+Default value: NONE 
+
+The url you want to perform the tests on.
+
+#### options.key
+
+Type `String`
+Default value: NONE 
+
+The API Key for the public instance of WPT. *Not needed if using a private instance of webpagetest*
+
+#### options.location
+
+Type `String`
+Default value: 'Dulles_Nexus5' 
+
+The default WPT location/device to conduct the test using.
+
+#### options.wptInstance
+
+Type `String`
+Default value: 'www.webpagetest.org' 
+
+The WPT instance to conduct the tests with.
+
+#### options.connectivity
+
+Type `String`
+Default value: NONE
+
+The connectivity profile to use. WPT provides the following options: Cable, DSL, FIOS, Dial, 3G, Native, custom.
+
+#### options.bandwidthDown
+
+Type `String`
+Default value: NONE
+
+The download bandwith in Kbps. *Used when connectivity is set to `custom`.*
+
+#### options.bandwidthUp
+
+Type `String`
+Default value: NONE
+
+The upload bandwith in Kbps. *Used when connectivity is set to `custom`.*
+
+#### options.latency
+
+Type `String`
+Default value: NONE
+
+The RTT latency in milliseconds. *Used when connectivity is set to `custom`.*
+
+#### options.packetLossRate
+
+Type `String`
+Default value: NONE
+
+The package loss rate (percentage of packets to drop). *Used when connectivity is set to `custom`.*
+
+#### options.budget
+
+Type `Object`
+
+Allows you to specify your budget for a number of different variables, including:
+
+##### budget.visualComplete
+
+Type `String`
+Default value: NONE
+
+The budget for visually complete in millseconds.
+
+##### budget.render
+
+Type `String`
+Default value: 1000
+
+The budget for start render time in millseconds.
+
+##### budget.loadTime
+
+Type `String`
+Default value: NONE
+
+The budget for load time in millseconds.
+
+##### budget.docTime
+
+Type `String`
+Default value: NONE
+
+The budget for `document.complete` in millseconds.
+
+##### budget.fullyLoaded
+
+Type `String`
+Default value: NONE
+
+The budget for fully loaded time in millseconds.
+
+##### budget.bytesIn
+
+Type `String`
+Default value: NONE
+
+The budget for overall weight in bytes.
+
+##### budget.bytesInDoc
+
+Type `String`
+Default value: NONE
+
+The budget for number of bytes downloaded before the Document Complete time.
+
+##### budget.requests
+
+Type `String`
+Default value: NONE
+
+The budget for overall number of requests.
+
+##### budget.requestsDoc
+
+Type `String`
+Default value: NONE
+
+The budget for number of requests made before the Document Complete time.
+
+##### budget.speedIndex
+
+Type `String`
+Default value: 1000
+
+The budget for calculated SpeedIndex.
 
 ### Usage Examples
 
-#### Default Options
+#### 1. Test http://google.com against default budget settings
 
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE'
+    }
+  }
+}
+```
 
-#### Custom Options
+#### 2. Test http://google.com using custom budget for SpeedIndex and Visually Complete
 
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE',
+      budget: {
+		visualComplete: '4000',
+		speedIndex: '1500'
+      }
+    }
+  }
+}
+```
+
+#### 3. Test URL using custom budget and private WPT Instance
+
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      wptInstance: 'http://PRIVATE_INSTANCE.com',
+      budget: {
+		visualComplete: '4000',
+		speedIndex: '1500'
+      }
+    }
+  }
+}
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

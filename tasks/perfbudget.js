@@ -31,13 +31,10 @@ module.exports = function(grunt) {
         loadTime: '',
         docTime: '',
         fullyLoaded: '',
-        bytesOut: '',
-        bytesOutDoc: '',
         bytesIn: '',
         bytesInDoc: '',
         requests: '', 
         requestsDoc: '',
-        domTime: '',
         SpeedIndex: '1000'
       }
     });
