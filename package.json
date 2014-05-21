@@ -1,8 +1,8 @@
 {
-  "name": "grunt-wpt",
-  "description": "Grunt task for WebPageTest",
+  "name": "grunt-perfbudget",
+  "description": "Grunt task for Performance Budgeting",
   "version": "0.1.0",
-  "homepage": "https://github.com/tkadlec/grunt-wpt",
+  "homepage": "https://github.com/tkadlec/grunt-perfbudget",
   "author": {
     "name": "Tim Kadlec",
     "email": "tim@timkadlec.com",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tkadlec/grunt-wpt.git"
+    "url": "git://github.com/tkadlec/grunt-perfbudget.git"
   },
   "bugs": {
-    "url": "https://github.com/tkadlec/grunt-wpt/issues"
+    "url": "https://github.com/tkadlec/grunt-perfbudget/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/tkadlec/grunt-wpt/blob/master/LICENSE-MIT"
+      "url": "https://github.com/tkadlec/grunt-perfbudget/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {

@@ -1,6 +1,6 @@
 /*
- * grunt-wpt
- * https://github.com/tkadlec/grunt-wpt
+ * grunt-perfbudget
+ * https://github.com/tkadlec/grunt-perfbudget
  *
  * Copyright (c) 2014 Tim Kadlec
  * Licensed under the MIT license.
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    wpt: {
+    perfbudget: {
       foo: {
         options: {
           url: 'http://timkadlec.com',
