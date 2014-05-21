@@ -23,7 +23,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-perfbudget');
 ```
 
-## The "wpt" task
+## The "perfbudget" task
 
 ### Required configuration properties
 
