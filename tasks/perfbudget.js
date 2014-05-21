@@ -50,6 +50,7 @@ module.exports = function(grunt) {
     // to our budget thresholds
     var processData = function(data) {
       var budget = options.budget,
+          summary = data.data.summary,
           median = data.data.median.firstView,
           pass = true,
           str = "";
@@ -75,12 +76,16 @@ module.exports = function(grunt) {
               '\nTest for ' + options.url + ' \t  FAILED' +
             '\n-----------------------------------------------\n\n');
         grunt.log.error(str);
+        grunt.log.error('Summary: ' + summary);
       } else {
         grunt.log.ok('\n\n-----------------------------------------------' +
               '\nTest for ' + options.url + ' \t  PASSED' +
             '\n-----------------------------------------------\n\n');
         grunt.log.ok(str);
+        grunt.log.ok('Summary: ' + summary);
+
       }
+
       
     };
 
