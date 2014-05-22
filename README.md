@@ -27,7 +27,7 @@ grunt.loadNpmTasks('grunt-perfbudget');
 
 ### Required configuration properties
 
-While grunt-perfbudget provides defaults for most configurable options, it does require the URL to be tested, as well as an API key to use (if testing against the public instance of WebPageTest).
+While grunt-perfbudget provides defaults for most configurable options, it does require the URL to be tested, as well as an API key to use if testing against the public instance of WebPagetest. For more information on obtaining a key, [see this thread](http://www.webpagetest.org/forums/showthread.php?tid=466) on the WebPagetest forums.
 
 These can be set in your Gruntfile.js config file like so:
 
@@ -51,7 +51,7 @@ With this in place, grunt-perfbudget will now test your site against the default
 
 ### Options
 
-grunt-performancebudget takes the following options:
+grunt-perfbudget takes the following options:
 
 #### options.url
 

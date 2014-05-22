@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       foo: {
         options: {
           url: 'http://google.com',
-          key: '***REMOVED***',
+          key: 'YOUR_API_KEY',
           budget: {
             SpeedIndex: '1500'
           }
