@@ -116,6 +116,28 @@ Default value: NONE
 
 The package loss rate (percentage of packets to drop). *Used when connectivity is set to `custom`.*
 
+#### options.login
+
+Type `String`
+Default value: NONE
+
+Username for authenticating tests.
+
+#### options.password
+
+Type `String`
+Default value: NONE
+
+Password for authenticating tests.
+
+#### options.authenticationType
+
+Type `Number`
+Default value: 0
+
+Type of authentication. 0 = Basic, 1 = SNS.
+
+
 #### options.budget
 
 Type `Object`

@@ -18,13 +18,17 @@ module.exports = function(grunt) {
     var options = this.options({
       url: '',
       key: '',
-      location: "Dulles_Nexus5",
+      location: "Dulles:Chrome",
       wptInstance: "www.webpagetest.org",
       connectivity: '',
       bandwidthDown: '',
       bandwidthUp: '',
       latency: '',
       packetLossRate: '',
+      login: '',
+      password: '',
+      authenticationType: '',
+      video: 1,
       budget: {
         visualComplete: '',
         render: '1000',
@@ -74,13 +78,14 @@ module.exports = function(grunt) {
             '\n-----------------------------------------------\n\n');
         grunt.log.error(str);
         grunt.log.error('Summary: ' + summary);
+        done(false);
       } else {
         grunt.log.ok('\n\n-----------------------------------------------' +
               '\nTest for ' + options.url + ' \t  PASSED' +
             '\n-----------------------------------------------\n\n');
         grunt.log.ok(str);
         grunt.log.ok('Summary: ' + summary);
-
+        done();
       }
 
       
@@ -110,10 +115,18 @@ module.exports = function(grunt) {
     var done = this.async(),
         WebPageTest = require('webpagetest'),
         wpt = new WebPageTest(options.wptInstance, options.key),
-        err, data;
+        reserved = ['key', 'url', 'budget', 'wptInstance'],
+        err, data, toSend = {};
+
+
+        for (var item in options) {
+          if (reserved.indexOf(item) === -1 && options[item] !== '') {
+            toSend[item] = options[item];
+          }
+        }
 
         // run the test
-        wpt.runTest(options.url, {location: options.location, video: 1}, function(err, data) {
+        wpt.runTest(options.url, toSend, function(err, data) {
           if (err) {
             // ruh roh!
             grunt.log.error(err);
