@@ -4,9 +4,9 @@
 
 ### Performance budgeting thanks to the magic of WebPageTest
 
-grunt-perfbudget is a [Grunt.js](https://github.com/cowboy/grunt/) task for enforcing a performance budget ([more on performance budgets](http://timkadlec.com/2013/01/setting-a-performance-budget/)). It uses the wonderful [webpagetest.org](http://webpagetest.org) and the [WebPageTest API Wrapper for NodeJS](https://github.com/marcelduran/webpagetest-api) created by [Marcel Duran](https://github.com/marcelduran).
+grunt-perfbudget is a [Grunt.js](https://github.com/cowboy/grunt/) task for enforcing a performance budget ([more on performance budgets](http://timkadlec.com/2013/01/setting-a-performance-budget/)). It uses the wonderful [webpagetest.org](http://webpagetest.org) and the [WebPagetest API Wrapper for NodeJS](https://github.com/marcelduran/webpagetest-api) created by [Marcel Duran](https://github.com/marcelduran).
 
-grunt-perfbudget uses either a public or private instance of WebPageTest to perform tests on a specified URL. It compares test results to budgets you specify. If the budget is met, the tasks successfully completes. If it the page exceeds your performance budgets, the task fails and informs you why.
+grunt-perfbudget uses either a public or private instance of WebPagetest to perform tests on a specified URL. It compares test results to budgets you specify. If the budget is met, the tasks successfully completes. If it the page exceeds your performance budgets, the task fails and informs you why.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
