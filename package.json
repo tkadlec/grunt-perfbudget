@@ -1,7 +1,7 @@
 {
   "name": "grunt-perfbudget",
   "description": "Grunt task for Performance Budgeting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/tkadlec/grunt-perfbudget",
   "author": {
     "name": "Tim Kadlec",
