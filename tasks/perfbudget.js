@@ -70,7 +70,6 @@ module.exports = function(grunt) {
           }
         }
       }
-
       //output our header and results
       if (!pass) {
         grunt.log.error('\n\n-----------------------------------------------' +
