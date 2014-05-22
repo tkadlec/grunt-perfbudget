@@ -66,7 +66,6 @@ module.exports = function(grunt) {
           }
         }
       }
-
       //output our header and results
       if (!pass) {
         grunt.log.error('\n\n-----------------------------------------------' +
@@ -74,13 +73,14 @@ module.exports = function(grunt) {
             '\n-----------------------------------------------\n\n');
         grunt.log.error(str);
         grunt.log.error('Summary: ' + summary);
+        done(false);
       } else {
         grunt.log.ok('\n\n-----------------------------------------------' +
               '\nTest for ' + options.url + ' \t  PASSED' +
             '\n-----------------------------------------------\n\n');
         grunt.log.ok(str);
         grunt.log.ok('Summary: ' + summary);
-
+        done();
       }
 
       
