@@ -137,6 +137,12 @@ Default value: 0
 
 Type of authentication. 0 = Basic, 1 = SNS.
 
+#### options.runs
+
+Type `Number`
+Default value: 1
+
+Number of test runs.
 
 #### options.budget
 

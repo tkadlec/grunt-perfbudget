@@ -29,6 +29,7 @@ module.exports = function(grunt) {
       password: '',
       authenticationType: '',
       video: 1,
+      runs: 1,
       budget: {
         visualComplete: '',
         render: '1000',
