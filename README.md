@@ -274,3 +274,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 - Version 0.1.3: Bug fix for custom options. Now includes ability to use HTTP authentication on tests.
+- Version 0.1.4: Ability to define custom number of test runs.
