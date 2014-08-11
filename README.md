@@ -88,6 +88,13 @@ Default value: 5
 
 The frequency (in seconds) to poll for results after the test has been scheduled.
 
+#### options.timeout
+
+Type `Number`
+Default value: 60
+
+Timeout (in seconds) for the tests to run.
+
 #### options.connectivity
 
 Type `String`

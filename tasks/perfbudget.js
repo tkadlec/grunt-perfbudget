@@ -31,6 +31,7 @@ module.exports = function(grunt) {
       video: 1,
       runs: 1,
       pollResults: 5,
+      timeout: 60,
       budget: {
         visualComplete: '',
         render: '1000',
@@ -120,7 +121,23 @@ module.exports = function(grunt) {
         wpt.runTest(options.url, toSend, function(err, data) {
           if (err) {
             // ruh roh!
-            var status = err.statusText || err.code + ' ' + err.message;
+            var status;
+            if (err.error) {
+              //underlying API throws errors inconsistently
+              //so we need to do this check
+
+              //custom for timeout because that could be common
+              if (err.error.code === 'TIMEOUT') {
+                status = 'Test ' + err.error.testId + ' has timed out. You can still view the results online at ' + 
+                        options.url + '/result/' + err.error.testId + '.';
+              } else {
+                //we'll keep this just in case
+                status = 'Test ' + err.error.testId + ' has errored. Error code: ' + err.error.code + '.';
+              }
+            } else {
+              status = err.statusText || (err.code + ' ' + err.message);
+            }
+           
             grunt.log.error(status);
           } else if (data.response.statusCode === 200) {
             testId = data.response.data.testId;
