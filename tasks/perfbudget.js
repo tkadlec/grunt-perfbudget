@@ -30,6 +30,7 @@ module.exports = function(grunt) {
       authenticationType: '',
       video: 1,
       runs: 1,
+      pollResults: 5,
       budget: {
         visualComplete: '',
         render: '1000',
@@ -91,26 +92,16 @@ module.exports = function(grunt) {
       
     };
 
-    var retrieveResults = function() {
-      var response;
-      // try to get the results for the test
-      wpt.getTestResults(testId, function(err, data) {
-        response = data.response;
-        if (response.statusCode === 200) {
-          //yay! Let's process it now
-          processData(response); 
-        } else {
-          if (response.statusCode !== curStatus) {
-            //update status so folks now we haven't died on them
-            grunt.log.writeln( (response.statusText + '...').cyan );
-            curStatus = response.statusCode;
-          }
-          //check again later
-          myTimer = setTimeout(function(testId) {
-            retrieveResults(testId);
-          }, 1000);
+    var retrieveResults = function(response) {
+      if (response.statusCode === 200) {
+        //yay! Let's process it now
+        processData(response); 
+      } else {
+        if (response.statusCode !== curStatus) {
+          //we had a problem
+          grunt.log.error( (response.statusText) );
         }
-      });
+      }
     };
     var done = this.async(),
         WebPageTest = require('webpagetest'),
@@ -129,20 +120,21 @@ module.exports = function(grunt) {
         wpt.runTest(options.url, toSend, function(err, data) {
           if (err) {
             // ruh roh!
-            grunt.log.error(err);
-          } else if (data.statusCode === 200) {
-            // yay! Let's let them know the test is running.
-            grunt.log.writeln( ('Running test...').cyan );
-
-            testId = data.data.testId;
-            //and we have an ID!
-            grunt.log.writeln( ('Test ID ' + testId + ' obtained....').cyan );
+            var status = err.statusText || err.code + ' ' + err.message;
+            grunt.log.error(status);
+          } else if (data.response.statusCode === 200) {
+            testId = data.response.data.testId;
             
-            //now try to get the actual results
-            retrieveResults(testId);
+            if (data.response.data.successfulFVRuns <= 0) {
+              grunt.log.error( ('Test ' + testId + ' was unable to complete. Please see ' + data.response.data.summary + ' for more details.').cyan );
+            } else {
+              // yay! now try to get the actual results
+              retrieveResults(data.response);
+            }
+            
           } else {
             // ruh roh! Something is off here.
-            grunt.log.error(data.statusText);
+            grunt.log.error(data.response.data.statusText);
           }
         });
   });

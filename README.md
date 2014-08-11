@@ -81,6 +81,13 @@ Default value: 'www.webpagetest.org'
 
 The WPT instance to conduct the tests with.
 
+#### options.pollResults
+
+Type `Number`
+Default value: 5
+
+The frequency (in seconds) to poll for results after the test has been scheduled.
+
 #### options.connectivity
 
 Type `String`
