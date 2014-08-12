@@ -30,6 +30,7 @@ module.exports = function(grunt) {
       authenticationType: '',
       video: 1,
       runs: 1,
+      repeatView: false,
       budget: {
         visualComplete: '',
         render: '1000',
@@ -53,7 +54,7 @@ module.exports = function(grunt) {
     var processData = function(data) {
       var budget = options.budget,
           summary = data.data.summary,
-          median = data.data.median.firstView,
+          median = options.repeatView ? data.data.median.repeatView : data.data.median.firstView,
           pass = true,
           str = "";
 
