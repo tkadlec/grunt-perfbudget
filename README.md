@@ -156,13 +156,15 @@ Type of authentication. 0 = Basic, 1 = SNS.
 Type `Number`
 Default value: 1
 
-Number of test runs.
+Number of test runs. *If the test is run more more than once, the budget is tested against the median result of the runs.*
 
 #### options.budget
 
 Type `Object`
 
-Allows you to specify your budget for a number of different variables, including:
+Allows you to specify a performance budget. *If the test is run more more than once, the budget is tested against the median result of the runs.*
+
+The variables you can use as a budget include:
 
 ##### budget.visualComplete
 
@@ -274,6 +276,24 @@ perfbudget: {
     options: {
       url: 'http://google.com',
       wptInstance: 'http://PRIVATE_INSTANCE.com',
+      budget: {
+		visualComplete: '4000',
+		speedIndex: '1500'
+      }
+    }
+  }
+}
+```
+
+#### 4. Test http://google.com using a custom budget against the median result of 5 test runs.
+
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE',
+      runs: 5,
       budget: {
 		visualComplete: '4000',
 		speedIndex: '1500'
