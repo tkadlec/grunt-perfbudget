@@ -32,6 +32,7 @@ module.exports = function(grunt) {
       runs: 1,
       pollResults: 5,
       timeout: 60,
+      repeatView: false,
       budget: {
         visualComplete: '',
         render: '1000',
@@ -55,7 +56,7 @@ module.exports = function(grunt) {
     var processData = function(data) {
       var budget = options.budget,
           summary = data.data.summary,
-          median = data.data.median.firstView,
+          median = options.repeatView ? data.data.median.repeatView : data.data.median.firstView,
           pass = true,
           str = "";
 
