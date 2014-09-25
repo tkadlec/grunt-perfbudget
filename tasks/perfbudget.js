@@ -74,6 +74,8 @@ module.exports = function(grunt) {
           }
         }
       }
+
+      //
       //output our header and results
       if (!pass) {
         grunt.log.error('\n\n-----------------------------------------------' +
@@ -117,7 +119,11 @@ module.exports = function(grunt) {
             toSend[item] = options[item];
           }
         }
-
+        if (Object.keys(options.budget).length === 0) {
+          //empty budget defined, so error
+          grunt.log.error('Empty budget option provided');
+          done(false);
+        }
         // run the test
         wpt.runTest(options.url, toSend, function(err, data) {
           if (err) {
