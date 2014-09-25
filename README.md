@@ -229,7 +229,7 @@ Default value: NONE
 
 The budget for number of requests made before the Document Complete time.
 
-##### budget.speedIndex
+##### budget.SpeedIndex
 
 Type `String`
 Default value: 1000
