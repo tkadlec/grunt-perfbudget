@@ -130,6 +130,13 @@ Default value: NONE
 
 The package loss rate (percentage of packets to drop). *Used when connectivity is set to `custom`.*
 
+#### options.repeatView
+
+Type `Boolean`
+Default value: `false` 
+
+If set to `true`, tests the budget against the repeat view. *By default, perfbudget tests the budget against the first view.*
+
 #### options.login
 
 Type `String`
