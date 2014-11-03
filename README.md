@@ -268,7 +268,7 @@ perfbudget: {
       key: 'API_KEY_HERE',
       budget: {
 		visualComplete: '4000',
-		speedIndex: '1500'
+		SpeedIndex: '1500'
       }
     }
   }
@@ -285,7 +285,7 @@ perfbudget: {
       wptInstance: 'http://PRIVATE_INSTANCE.com',
       budget: {
 		visualComplete: '4000',
-		speedIndex: '1500'
+		SpeedIndex: '1500'
       }
     }
   }
@@ -303,7 +303,7 @@ perfbudget: {
       runs: 5,
       budget: {
 		visualComplete: '4000',
-		speedIndex: '1500'
+		SpeedIndex: '1500'
       }
     }
   }
