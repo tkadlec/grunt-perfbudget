@@ -54,6 +54,7 @@ module.exports = function(grunt) {
     // takes the data returned by wpt.getTestResults and compares 
     // to our budget thresholds
     var processData = function(data) {
+
       var budget = options.budget,
           summary = data.data.summary,
           median = options.repeatView ? data.data.median.repeatView : data.data.median.firstView,
@@ -116,6 +117,13 @@ module.exports = function(grunt) {
           if (reserved.indexOf(item) === -1 && options[item] !== '') {
             toSend[item] = options[item];
           }
+        }
+        if (options.repeatView) {
+          //if repeatView, we need to get repeat
+          toSend['firstViewOnly'] = false;
+        } else {
+          //otherwise, don't
+          toSend['firstViewOnly'] = true;
         }
 
         // run the test
