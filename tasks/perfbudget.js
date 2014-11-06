@@ -75,6 +75,8 @@ module.exports = function(grunt) {
           }
         }
       }
+
+      //
       //output our header and results
       if (!pass) {
         grunt.log.error('\n\n-----------------------------------------------' +
@@ -118,12 +120,19 @@ module.exports = function(grunt) {
             toSend[item] = options[item];
           }
         }
+
         if (options.repeatView) {
           //if repeatView, we need to get repeat
           toSend['firstViewOnly'] = false;
         } else {
           //otherwise, don't
           toSend['firstViewOnly'] = true;
+        }
+
+        if (Object.keys(options.budget).length === 0) {
+          //empty budget defined, so error
+          grunt.log.error('Empty budget option provided');
+          done(false);
         }
 
         // run the test
@@ -138,7 +147,7 @@ module.exports = function(grunt) {
               //custom for timeout because that could be common
               if (err.error.code === 'TIMEOUT') {
                 status = 'Test ' + err.error.testId + ' has timed out. You can still view the results online at ' + 
-                        options.url + '/result/' + err.error.testId + '.';
+                        options.wptInstance + '/result/' + err.error.testId + '.';
               } else {
                 //we'll keep this just in case
                 status = 'Test ' + err.error.testId + ' has errored. Error code: ' + err.error.code + '.';

@@ -130,6 +130,13 @@ Default value: NONE
 
 The package loss rate (percentage of packets to drop). *Used when connectivity is set to `custom`.*
 
+#### options.repeatView
+
+Type `Boolean`
+Default value: `false` 
+
+If set to `true`, tests the budget against the repeat view. *By default, perfbudget tests the budget against the first view.*
+
 #### options.login
 
 Type `String`
@@ -156,13 +163,15 @@ Type of authentication. 0 = Basic, 1 = SNS.
 Type `Number`
 Default value: 1
 
-Number of test runs.
+Number of test runs. *If the test is run more more than once, the budget is tested against the median result of the runs.*
 
 #### options.budget
 
 Type `Object`
 
-Allows you to specify your budget for a number of different variables, including:
+Allows you to specify a performance budget. *If the test is run more more than once, the budget is tested against the median result of the runs.*
+
+The variables you can use as a budget include:
 
 ##### budget.visualComplete
 
@@ -227,7 +236,7 @@ Default value: NONE
 
 The budget for number of requests made before the Document Complete time.
 
-##### budget.speedIndex
+##### budget.SpeedIndex
 
 Type `String`
 Default value: 1000
@@ -259,7 +268,7 @@ perfbudget: {
       key: 'API_KEY_HERE',
       budget: {
 		visualComplete: '4000',
-		speedIndex: '1500'
+		SpeedIndex: '1500'
       }
     }
   }
@@ -276,7 +285,25 @@ perfbudget: {
       wptInstance: 'http://PRIVATE_INSTANCE.com',
       budget: {
 		visualComplete: '4000',
-		speedIndex: '1500'
+		SpeedIndex: '1500'
+      }
+    }
+  }
+}
+```
+
+#### 4. Test http://google.com using a custom budget against the median result of 5 test runs.
+
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE',
+      runs: 5,
+      budget: {
+		visualComplete: '4000',
+		SpeedIndex: '1500'
       }
     }
   }
@@ -290,3 +317,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - Version 0.1.3: Bug fix for custom options. Now includes ability to use HTTP authentication on tests.
 - Version 0.1.4: Ability to define custom number of test runs.
 - Version 0.1.5: Improved polling using the underlying API. Users can now set polling frequency as well as a timeout for tests.
+- Version 0.1.6: Ability to test budget against repeat views; minor bug fixes; better error handling.
