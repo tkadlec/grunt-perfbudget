@@ -135,7 +135,7 @@ The package loss rate (percentage of packets to drop). *Used when connectivity i
 Type `Boolean`
 Default value: `false` 
 
-If set to `true`, tests the budget against the repeat view. *By default, perfbudget tests the budget against the first view.*
+If set to `true`, tests the budget against the repeat view. *By default, perfbudget tests the budget against the first view and doesn't ask WPT to run a test on the repeat view.*
 
 #### options.login
 
