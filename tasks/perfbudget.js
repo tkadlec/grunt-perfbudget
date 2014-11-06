@@ -147,7 +147,7 @@ module.exports = function(grunt) {
               //custom for timeout because that could be common
               if (err.error.code === 'TIMEOUT') {
                 status = 'Test ' + err.error.testId + ' has timed out. You can still view the results online at ' + 
-                        options.wptInstance + '/result/' + err.error.testId + '.';
+                        options.wptInstance + '/results.php?test=' + err.error.testId + '.';
               } else {
                 //we'll keep this just in case
                 status = 'Test ' + err.error.testId + ' has errored. Error code: ' + err.error.code + '.';
