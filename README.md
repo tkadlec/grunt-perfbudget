@@ -243,6 +243,30 @@ Default value: 1000
 
 The budget for calculated SpeedIndex.
 
+##### budget.userTime
+
+Type `String`
+Default value: NONE
+
+The budget for the final user timing mark recorded on the page.
+
+You can test against a specific user timing mark like so:
+
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE',
+      budget: {
+		'userTime.CUSTOM_MARK': '1500'
+      }
+    }
+  }
+}
+```
+
+For more information on User Timing, see [http://www.w3.org/TR/user-timing/](http://www.w3.org/TR/user-timing/)
 ### Usage Examples
 
 #### 1. Test http://google.com against default budget settings
