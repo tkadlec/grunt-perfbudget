@@ -165,6 +165,13 @@ Default value: 1
 
 Number of test runs. *If the test is run more more than once, the budget is tested against the median result of the runs.*
 
+#### options.returnJSON
+
+Type `Boolean`
+Default value: `false`
+
+Return formatted results or just JSON.
+
 #### options.budget
 
 Type `Object`
