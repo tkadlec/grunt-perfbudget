@@ -33,6 +33,7 @@ module.exports = function(grunt) {
       pollResults: 5,
       timeout: 60,
       repeatView: false,
+      returnJSON: false,
       budget: {
         visualComplete: '',
         render: '1000',
@@ -76,23 +77,30 @@ module.exports = function(grunt) {
         }
       }
 
-      //
-      //output our header and results
-      if (!pass) {
-        grunt.log.error('\n\n-----------------------------------------------' +
-              '\nTest for ' + options.url + ' \t  FAILED' +
-            '\n-----------------------------------------------\n\n');
-        grunt.log.error(str);
-        grunt.log.error('Summary: ' + summary);
-        done(false);
-      } else {
-        grunt.log.ok('\n\n-----------------------------------------------' +
-              '\nTest for ' + options.url + ' \t  PASSED' +
-            '\n-----------------------------------------------\n\n');
-        grunt.log.ok(str);
-        grunt.log.ok('Summary: ' + summary);
-        done();
-      }
+	  //if required - we can return json encoded string
+	  if (options.returnJSON) {
+		  median.summary = summary;
+		  grunt.log.ok(JSON.stringify(median));
+		  done();
+	  } else {  
+		//
+		//output our header and results
+		  if (!pass) {
+			grunt.log.error('\n\n-----------------------------------------------' +
+				  '\nTest for ' + options.url + ' \t  FAILED' +
+				'\n-----------------------------------------------\n\n');
+			grunt.log.error(str);
+			grunt.log.error('Summary: ' + summary);
+			done(false);
+		  } else {
+			grunt.log.ok('\n\n-----------------------------------------------' +
+				  '\nTest for ' + options.url + ' \t  PASSED' +
+				'\n-----------------------------------------------\n\n');
+			grunt.log.ok(str);
+			grunt.log.ok('Summary: ' + summary);
+			done();
+		  }
+	  }
 
       
     };
