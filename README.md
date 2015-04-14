@@ -53,31 +53,38 @@ With this in place, grunt-perfbudget will now test your site against the default
 
 grunt-perfbudget takes the following options:
 
+#### options.output
+
+Type `String`
+Default value: NONE
+
+The file to output the JSON results to.
+
 #### options.url
 
 Type `String`
-Default value: NONE 
+Default value: NONE
 
 The url you want to perform the tests on.
 
 #### options.key
 
 Type `String`
-Default value: NONE 
+Default value: NONE
 
 The API Key for the public instance of WPT. *Not needed if using a private instance of webpagetest*
 
 #### options.location
 
 Type `String`
-Default value: 'Dulles_Nexus5' 
+Default value: 'Dulles_Nexus5'
 
 The default WPT location/device to conduct the test using.
 
 #### options.wptInstance
 
 Type `String`
-Default value: 'www.webpagetest.org' 
+Default value: 'www.webpagetest.org'
 
 The WPT instance to conduct the tests with.
 
@@ -133,7 +140,7 @@ The package loss rate (percentage of packets to drop). *Used when connectivity i
 #### options.repeatView
 
 Type `Boolean`
-Default value: `false` 
+Default value: `false`
 
 If set to `true`, tests the budget against the repeat view. *By default, perfbudget tests the budget against the first view and doesn't ask WPT to run a test on the repeat view.*
 
@@ -329,6 +336,20 @@ perfbudget: {
 		visualComplete: '4000',
 		SpeedIndex: '1500'
       }
+    }
+  }
+}
+```
+
+#### 5. Test http://google.com against default budget settings and output the results to a file.
+
+```javascript
+perfbudget: {
+  default: {
+    options: {
+      url: 'http://google.com',
+      key: 'API_KEY_HERE',
+      output: 'wpt-results.json'
     }
   }
 }

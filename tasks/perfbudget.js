@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         fullyLoaded: '',
         bytesIn: '',
         bytesInDoc: '',
-        requests: '', 
+        requests: '',
         requestsDoc: '',
         SpeedIndex: '1000'
       }
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         curStatus,
         myTimer;
 
-    // takes the data returned by wpt.getTestResults and compares 
+    // takes the data returned by wpt.getTestResults and compares
     // to our budget thresholds
     var processData = function(data) {
 
@@ -76,6 +76,13 @@ module.exports = function(grunt) {
         }
       }
 
+      //save the file before failing or passing
+      var output = options.output;
+      if (typeof output !== 'undefined') {
+        grunt.log.ok('Writing file: ' + output);
+        grunt.file.write(output, JSON.stringify(data));
+      }
+
       //
       //output our header and results
       if (!pass) {
@@ -94,13 +101,13 @@ module.exports = function(grunt) {
         done();
       }
 
-      
+
     };
 
     var retrieveResults = function(response) {
       if (response.statusCode === 200) {
         //yay! Let's process it now
-        processData(response); 
+        processData(response);
       } else {
         if (response.statusCode !== curStatus) {
           //we had a problem
@@ -146,7 +153,7 @@ module.exports = function(grunt) {
 
               //custom for timeout because that could be common
               if (err.error.code === 'TIMEOUT') {
-                status = 'Test ' + err.error.testId + ' has timed out. You can still view the results online at ' + 
+                status = 'Test ' + err.error.testId + ' has timed out. You can still view the results online at ' +
                         options.wptInstance + '/results.php?test=' + err.error.testId + '.';
               } else {
                 //we'll keep this just in case
@@ -155,18 +162,18 @@ module.exports = function(grunt) {
             } else {
               status = err.statusText || (err.code + ' ' + err.message);
             }
-           
+
             grunt.log.error(status);
           } else if (data.response.statusCode === 200) {
             testId = data.response.data.testId;
-            
+
             if (data.response.data.successfulFVRuns <= 0) {
               grunt.log.error( ('Test ' + testId + ' was unable to complete. Please see ' + data.response.data.summary + ' for more details.').cyan );
             } else {
               // yay! now try to get the actual results
               retrieveResults(data.response);
             }
-            
+
           } else {
             // ruh roh! Something is off here.
             grunt.log.error(data.response.data.statusText);
