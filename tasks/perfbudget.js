@@ -132,7 +132,7 @@ module.exports = function(grunt) {
         }
 
         //if repeatView, we need to get repeat
-        toSend.firstViewOnly = !!options.repeatView;
+        toSend.firstViewOnly = options.repeatView ? false : true;
 
         if (Object.keys(options.budget).length === 0) {
           //empty budget defined, so error
