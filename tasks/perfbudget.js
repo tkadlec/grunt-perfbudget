@@ -51,6 +51,11 @@ module.exports = function(grunt) {
         curStatus,
         myTimer;
 
+    var logErrorAndExit = function(msg) {
+      grunt.log.error((msg).red);
+      done(false);
+    };
+
     // takes the data returned by wpt.getTestResults and compares
     // to our budget thresholds
     var processData = function(data) {
@@ -100,8 +105,6 @@ module.exports = function(grunt) {
         grunt.log.ok('Summary: ' + summary);
         done();
       }
-
-
     };
 
     var retrieveResults = function(response) {
@@ -111,16 +114,16 @@ module.exports = function(grunt) {
       } else {
         if (response.statusCode !== curStatus) {
           //we had a problem
-          grunt.log.error( (response.statusText) );
+          logErrorAndExit(response.statusText);
         }
       }
     };
+
     var done = this.async(),
         WebPageTest = require('webpagetest'),
         wpt = new WebPageTest(options.wptInstance, options.key),
         reserved = ['key', 'url', 'budget', 'wptInstance'],
         err, data, toSend = {};
-
 
         for (var item in options) {
           if (reserved.indexOf(item) === -1 && options[item] !== '') {
@@ -128,18 +131,12 @@ module.exports = function(grunt) {
           }
         }
 
-        if (options.repeatView) {
-          //if repeatView, we need to get repeat
-          toSend['firstViewOnly'] = false;
-        } else {
-          //otherwise, don't
-          toSend['firstViewOnly'] = true;
-        }
+        //if repeatView, we need to get repeat
+        toSend.firstViewOnly = !!options.repeatView;
 
         if (Object.keys(options.budget).length === 0) {
           //empty budget defined, so error
-          grunt.log.error('Empty budget option provided');
-          done(false);
+          logErrorAndExit('Empty budget option provided');
         }
 
         // run the test
@@ -163,12 +160,12 @@ module.exports = function(grunt) {
               status = err.statusText || (err.code + ' ' + err.message);
             }
 
-            grunt.log.error(status);
+            logErrorAndExit(status);
           } else if (data.response.statusCode === 200) {
             testId = data.response.data.testId;
 
             if (data.response.data.successfulFVRuns <= 0) {
-              grunt.log.error( ('Test ' + testId + ' was unable to complete. Please see ' + data.response.data.summary + ' for more details.').cyan );
+              logErrorAndExit('Test ' + testId + ' was unable to complete. Please see ' + data.response.data.summary + ' for more details.');
             } else {
               // yay! now try to get the actual results
               retrieveResults(data.response);
@@ -176,7 +173,7 @@ module.exports = function(grunt) {
 
           } else {
             // ruh roh! Something is off here.
-            grunt.log.error(data.response.data.statusText);
+            logErrorAndExit(data.response.data.statusText);
           }
         });
   });
