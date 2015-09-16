@@ -1,7 +1,7 @@
 {
   "name": "grunt-perfbudget",
   "description": "Grunt task for Performance Budgeting",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://github.com/tkadlec/grunt-perfbudget",
   "author": {
     "name": "Tim Kadlec",
@@ -28,16 +28,16 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "^0.9.2",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-nodeunit": "^0.3.3",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
   "dependencies": {
-    "webpagetest": "~0.2.4"
+    "webpagetest": "~0.3.3"
   },
   "keywords": [
     "gruntplugin"
