@@ -48,8 +48,7 @@ module.exports = function(grunt) {
     });
 
     var testId,
-        curStatus,
-        myTimer;
+        curStatus;
 
     var logErrorAndExit = function(msg) {
       grunt.log.error((msg).red);
@@ -123,7 +122,7 @@ module.exports = function(grunt) {
         WebPageTest = require('webpagetest'),
         wpt = new WebPageTest(options.wptInstance, options.key),
         reserved = ['key', 'url', 'budget', 'wptInstance'],
-        err, data, toSend = {};
+        toSend = {};
 
         for (var item in options) {
           if (reserved.indexOf(item) === -1 && options[item] !== '') {
@@ -132,7 +131,7 @@ module.exports = function(grunt) {
         }
 
         //if repeatView, we need to get repeat
-        toSend.firstViewOnly = options.repeatView ? false : true;
+        toSend.firstViewOnly = !options.repeatView;
 
         if (Object.keys(options.budget).length === 0) {
           //empty budget defined, so error
@@ -161,19 +160,19 @@ module.exports = function(grunt) {
             }
 
             logErrorAndExit(status);
-          } else if (data.response.statusCode === 200) {
-            testId = data.response.data.testId;
+          } else if (data.statusCode === 200) {
+            testId = data.data.testId;
 
-            if (data.response.data.successfulFVRuns <= 0) {
-              logErrorAndExit('Test ' + testId + ' was unable to complete. Please see ' + data.response.data.summary + ' for more details.');
+            if (data.data.successfulFVRuns <= 0) {
+              grunt.log.error( ('Test ' + testId + ' was unable to complete. Please see ' + data.data.summary + ' for more details.').cyan );
             } else {
               // yay! now try to get the actual results
-              retrieveResults(data.response);
+              retrieveResults(data);
             }
 
           } else {
             // ruh roh! Something is off here.
-            logErrorAndExit(data.response.data.statusText);
+            grunt.log.error(data.data.statusText);
           }
         });
   });
