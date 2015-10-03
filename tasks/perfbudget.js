@@ -1,6 +1,6 @@
 /*
  * grunt-perfbudget
- * https://github.com/tim/grunt-perfbudget
+ * https://github.com/tkadlec/grunt-perfbudget
  *
  * Copyright (c) 2014 Tim Kadlec
  * Licensed under the MIT license.
