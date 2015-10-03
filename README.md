@@ -363,3 +363,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - Version 0.1.4: Ability to define custom number of test runs.
 - Version 0.1.5: Improved polling using the underlying API. Users can now set polling frequency as well as a timeout for tests.
 - Version 0.1.6: Ability to test budget against repeat views; minor bug fixes; better error handling.
+- Version 0.1.7: Improved error handling.
+- Version 0.1.8: Ability to output results to JSON; bug fixes; improved error handling.
