@@ -365,3 +365,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - Version 0.1.6: Ability to test budget against repeat views; minor bug fixes; better error handling.
 - Version 0.1.7: Improved error handling.
 - Version 0.1.8: Ability to output results to JSON; bug fixes; improved error handling.
+- Version 0.1.9: Security improvements. Also changing default instance of WPT to use https now that the site supports it.
