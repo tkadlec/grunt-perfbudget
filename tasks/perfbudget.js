@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       url: '',
       key: '',
       location: "Dulles:Chrome",
-      wptInstance: "www.webpagetest.org",
+      wptInstance: "https://www.webpagetest.org",
       connectivity: '',
       bandwidthDown: '',
       bandwidthUp: '',
