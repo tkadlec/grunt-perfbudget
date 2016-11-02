@@ -30,13 +30,13 @@
     "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": ">=0.4.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": ">=0.4.0"
   },
   "dependencies": {
     "webpagetest": "~0.3.3",
