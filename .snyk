@@ -1,5 +1,16 @@
-version: v1.5.0
-ignore: {}
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:ms:20170412':
+    - webpagetest > mocha > debug > ms:
+        reason: Waiting for full update"
+        expires: '2017-07-05T19:47:44.500Z'
+  'npm:growl:20160721':
+    - webpagetest > mocha > growl:
+        reason: No fix available
+        expires: '2017-07-05T19:47:44.501Z'
+# patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:minimatch:20160620':
     - webpagetest > mocha > glob > minimatch:
