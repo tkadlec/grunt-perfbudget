@@ -15,3 +15,6 @@ patch:
   'npm:minimatch:20160620':
     - webpagetest > mocha > glob > minimatch:
         patched: '2016-08-08T18:21:06.819Z'
+  'npm:debug:20170905':
+    - webpagetest > mocha > debug:
+        patched: '2017-10-02T00:30:04.503Z'
