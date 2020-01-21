@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
+version: v1.14.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:ms:20170412':
@@ -15,3 +15,6 @@ patch:
   'npm:minimatch:20160620':
     - webpagetest > mocha > glob > minimatch:
         patched: '2016-08-08T18:21:06.819Z'
+  'npm:debug:20170905':
+    - webpagetest > mocha > debug:
+        patched: '2020-01-21T12:13:10.687Z'

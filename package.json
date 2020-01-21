@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "webpagetest": "~0.3.3",
-    "snyk": "^1.18.0"
+    "snyk": "^1.279.0"
   },
   "keywords": [
     "gruntplugin"
