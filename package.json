@@ -39,7 +39,7 @@
     "grunt": ">=0.4.0"
   },
   "dependencies": {
-    "webpagetest": "~0.3.3",
+    "webpagetest": "~0.7.0",
     "snyk": "^1.279.0"
   },
   "keywords": [
